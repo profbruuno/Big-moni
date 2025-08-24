@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no"
+  />
+  <meta name="theme-color" content="#0b0f14" />
+  <title>Big Money</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- App Header -->
+  <header class="app-header hidden" id="app-header">
+    <div class="brand">
+      <span class="logo">💰</span>
+      <span class="title">Big Money</span>
+    </div>
+    <div class="header-right">
+      <div class="uid-chip" id="uid-chip">UID —</div>
+      <button class="icon-btn" id="menu-btn" aria-label="Open menu">☰</button>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="app-main">
+
+    <!-- Auth Screen -->
+    <section id="auth-screen" class="screen">
+      <div class="auth-card card">
+        <h1>Welcome to Big Money</h1>
+        <p class="muted">Demo prototype. Do not use with real funds.</p>
+
+        <div class="tabs">
+          <button class="tab active" id="login-tab">Login</button>
+          <button class="tab" id="signup-tab">Sign up</button>
+        </div>
+
+        <form id="login-form" class="form active" autocomplete="off">
+          <label>Email
+            <input type="email" id="login-email" required value="brunomujuni6@gmail.com" />
+          </label>
+          <label>Password
+            <input type="password" id="login-password" required value="12345" />
+          </label>
+          <button class="btn btn-primary" type="submit">Login</button>
+        </form>
+
+        <form id="signup-form" class="form" autocomplete="off">
+          <label>Email
+            <input type="email" id="signup-email" required placeholder="you@example.com" />
+          </label>
+          <label>Password
+            <input type="password" id="signup-password" required placeholder="Choose a password" />
+          </label>
+          <label>Referral code (optional)
+            <input type="text" id="signup-referral" placeholder="BM-XXXX" />
+          </label>
+          <button class="btn btn-primary" type="submit">Create account</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- App Screens -->
+    <section id="app-screen" class="screen hidden">
+      <!-- Dashboard Page -->
+      <div id="page-dashboard" class="page active">
+        <div class="card kpi-card">
+          <div class="kpis">
+            <div>
+              <div class="kpi-label">Balance</div>
+              <div class="kpi-value" id="kpi-balance">UGX 0</div>
+            </div>
+            <div>
+              <div class="kpi-label">Active investments</div>
+              <div class="kpi-value" id="kpi-active">0</div>
+            </div>
+            <div>
+              <div class="kpi-label">Total invested</div>
+              <div class="kpi-value" id="kpi-total">UGX 0</div>
+            </div>
+          </div>
+          <div class="quick-actions">
+            <div class="inline-form">
+              <input type="number" id="deposit-amount" min="1000" step="1000" inputmode="numeric" placeholder="Deposit amount (UGX)" />
+              <button id="deposit-btn" class="btn btn-primary">Deposit</button>
+            </div>
+            <div class="inline-form">
+              <input type="number" id="withdraw-amount" min="1000" step="1000" inputmode="numeric" placeholder="Withdraw amount (UGX)" />
+              <button id="withdraw-btn" class="btn btn-outline">Withdraw</button>
+            </div>
+            <p class="muted small">Withdrawals are simulated. Integrate payments in production.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Investment packages</h3>
+          <p class="muted">Earn 10% daily (simulation). Cash out anytime.</p>
+          <div id="packages" class="packages"></div>
+        </div>
+
+        <div class="card">
+          <h3>Active investments</h3>
+          <div id="investments-list" class="list-empty muted">No investments yet.</div>
+        </div>
+
+        <div class="card">
+          <h3>Recent activity</h3>
+          <div id="tx-list" class="tx-list"></div>
+        </div>
+      </div>
+
+      <!-- Share & Referral Page -->
+      <div id="page-share" class="page">
+        <div class="card">
+          <h3>Your referral</h3>
+          <p><strong>Referral code:</strong> <span id="ref-code" class="mono"></span></p>
+          <div class="inline-form">
+            <input type="text" id="ref-link" readonly />
+            <button class="btn" id="copy-ref-link">Copy link</button>
+          </div>
+          <div class="share-row">
+            <button class="btn btn-outline" id="share-native">Share</button>
+            <button class="btn btn-outline" id="share-whatsapp">WhatsApp</button>
+            <button class="btn btn-outline" id="share-telegram">Telegram</button>
+          </div>
+          <p class="muted small">People referred: <span id="ref-count">0</span></p>
+        </div>
+      </div>
+
+      <!-- Support Page -->
+      <div id="page-support" class="page">
+        <div class="card">
+          <h3>Customer service</h3>
+          <ul class="list">
+            <li>
+              <span class="list-label">Email</span>
+              <a href="mailto:support@bigmoney.example">support@bigmoney.example</a>
+            </li>
+            <li>
+              <span class="list-label">WhatsApp</span>
+              <a href="https://wa.me/+256780889026" target="_blank" rel="noopener">+256 780 889 026</a>
+            </li>
+            <li>
+              <span class="list-label">Telegram</span>
+              <a id="telegram-link" href="#" target="_blank" rel="noopener">Join our Telegram</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>FAQ</h3>
+          <details>
+            <summary>How do returns work?</summary>
+            <p>Demo accrues 10% daily on each investment from its start date. Cash out to move value to wallet.</p>
+          </details>
+          <details>
+            <summary>How do I withdraw?</summary>
+            <p>In this demo, withdrawals reduce wallet balance and log a transaction. Hook up real payments in production.</p>
+          </details>
+        </div>
+      </div>
+
+      <!-- Profile / Extras Page -->
+      <div id="page-profile" class="page">
+        <div class="card">
+          <h3>Profile</h3>
+          <p><strong>Email:</strong> <span id="profile-email"></span></p>
+          <p><strong>UID:</strong> <span id="profile-uid" class="mono"></span></p>
+          <p><strong>Referred by:</strong> <span id="profile-referred-by">—</span></p>
+        </div>
+        <div class="card">
+          <h3>Settings</h3>
+          <label class="switch">
+            <input type="checkbox" id="notif-toggle" />
+            <span>Enable notifications (demo)</span>
+          </label>
+          <label class="switch">
+            <input type="checkbox" id="theme-toggle" />
+            <span>Dark theme</span>
+          </label>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Navigation -->
+  <nav class="tabbar hidden" id="tabbar">
+    <button class="tab-btn active" data-target="dashboard">🏠<span>Home</span></button>
+    <button class="tab-btn" data-target="share">🔗<span>Share</span></button>
+    <a class="tab-btn" href="https://wa.me/+256780889026" target="_blank" rel="noopener">📱<span>WhatsApp</span></a>
+    <button class="tab-btn" data-target="support">💬<span>Support</span></button>
+    <button class="tab-btn" data-target="profile">👤<span>Profile</span></button>
+  </nav>
+
+  <!-- Slide-up Menu Sheet -->
+  <div id="sheet-backdrop" class="sheet-backdrop hidden"></div>
+  <aside id="sheet" class="sheet hidden" aria-hidden="true">
+    <div class="sheet-handle"></div>
+    <div class="sheet-content">
+      <h4>Menu</h4>
+      <ul class="sheet-list">
+        <li><button class="item" data-target="dashboard">🏠 Dashboard</button></li>
+        <li><button class="item" data-target="share">🔗 Share & Referral</button></li>
+        <li><button class="item" data-target="support">💬 Customer Service</button></li>
+        <li><a class="item" href="https://wa.me/+256780889026" target="_blank" rel="noopener">📱 WhatsApp Support</a></li>
+        <li><a class="item" id="menu-telegram" href="#" target="_blank" rel="noopener">📢 Join Telegram</a></li>
+        <li><button class="item" data-target="profile">👤 Profile & Settings</button></li>
+        <li><button class="item danger" id="logout-btn">🚪 Logout</button></li>
+      </ul>
+    </div>
+  </aside>
+
+  <footer class="app-footer">
+    <span class="muted small">Big Money demo • 10% daily returns for simulation only • Not financial advice</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
